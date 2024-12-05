@@ -16,11 +16,7 @@ void UpdateMovies();
 void UpdateMovieOption(int i);
 void UpdateMovieActual(int i);
 void DeleteMovie(int i);
-char CheckSeat(int CinemaNumber, int MovieNumber, int ShowNumber, int SeatNumber);
-void ReserveSeat(int CinemaNumber, int MovieNumber, int ShowNumber, int SeatNumber);
-void ReserveSeat(int nCinema, int nMovie, int nShowing);
-void SeatSelectionSystem(int nCinema, int nMovie, int nShowing);
-void TicketReservation(int nCinema, int nMovie, int nShow, int nSeat);
+void DisplayHeader();
 
 // Main Function
 void main()
@@ -94,7 +90,7 @@ SelectCinema:
 		default:
 			goto SelectCinema;
 	}
- SelectMovie:
+SelectMovie:
 	string sPrefix = "C*";
 	char temp[2];
 	itoa(nCinema,temp,10);
@@ -119,7 +115,7 @@ SelectCinema:
 	}
 	Handler[0].close();
 
-  // Movie 2
+	// Movie 2
 	sFilename = sPrefix + "\\M2\\Movie.props";
 	for (i = 0; i < 18; i++)
 	{
@@ -197,4 +193,56 @@ SelectShowing:
 	default:
 		goto SelectShowing;
 	}
+}
+
+// UpdateMovie
+void UpdateMovieActual(int i)
+{
+	ofstream Writer;
+	switch (i)
+	{
+	case 1:
+		Writer.open("C1\\M1\\Movie.props");
+		break;
+	case 2:
+		Writer.open("C1\\M2\\Movie.props");
+		break;
+	case 3:
+		Writer.open("C2\\M1\\Movie.props");
+		break;
+	case 4:
+		Writer.open("C2\\M2\\Movie.props");
+		break;
+	case 5:
+		Writer.open("C3\\M1\\Movie.props");
+		break;
+	case 6:
+		Writer.open("C3\\M2\\Movie.props");
+		break;
+	default:
+		cout << "  ERROR: Invalid movie number." << endl;
+		cout << "  "; system("pause");
+	}
+	string Input;
+	DisplayHeader();
+	cout << "  Enter movie title: ";
+	getline(cin, Input); //Reset the cin; 
+	Writer << Input << endl;
+	DisplayHeader();
+	cout << "  Enter synopsis: ";
+	getline(cin,Input);
+	Writer << Input << endl;
+	DisplayHeader();
+	cout << "  Enter price: ";
+	getline(cin,Input);
+	Writer << Input << endl;
+	DisplayHeader();
+	cout << "  Enter date of showing [Month Day Year], ex.(Apr 01 2012): ";
+	getline(cin,Input);
+	Writer << Input << endl;
+	Writer.close();
+	DisplayHeader();
+	cout << "  Movie successfully updated!" << endl;
+	cout << "  ";
+	system("pause");
 }
