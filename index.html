@@ -5,6 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Ticket Booking</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            margin: auto;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        /* Movie covers in the slideshow */
+        .slideshow-container img {
+            width: 100%;
+            border-radius: 10px;
+            display: none;
+        }
+
+        /* Show the first image by default */
+        .slideshow-container img:first-child {
+            display: block;
+        }
+
+        /* Next and Previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Dots below the slideshow */
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dots span {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dots span.active {
+            background-color: #717171;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -19,35 +84,94 @@
     </header>
 
     <main>
-    <section id="now-showing">
-        <h2>Now Showing</h2>
-        <div class="movie">
-            <h3>The Batman</h3>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUOpwFVoR5xgrQX0AqB__TnzrmPtDbk9l30LJt78ih0wvfo-CW" alt="The Batman" width="200">
-            <p>Rating: PG-13</p>
-            <p>Genre: Action, Crime</p>
-            <button onclick="bookTicket('The Batman')">Book Ticket</button>
-        </div>
-        <div class="movie">
-            <h3>Spider-Man: No Way Home</h3>
-            <img src="https://m.media-amazon.com/images/M/MV5BMmFiZGZjMmEtMTA0Ni00MzA2LTljMTYtZGI2MGJmZWYzZTQ2XkEyXkFqcGc@._V1_.jpg" alt="Spider-Man: No Way Home" width="200">
-            <p>Rating: PG-13</p>
-            <p>Genre: Action, Sci-fi</p>
-            <button onclick="bookTicket('Spider-Man: No Way Home')">Book Ticket</button>
-        </div>
-        <div class="movie">
-            <h3>La La Land</h3>
-            <img src="https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg" alt="La La Land" width="200">
-            <p>Rating: PG-13</p>
-            <p>Genre: Horror, Romance</p>
-            <button onclick="bookTicket('La La Land')">Book Ticket</button>
-        </div>
-    </section>
+        <!-- Slideshow Section -->
+        <section id="slideshow">
+            <div class="slideshow-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUOpwFVoR5xgrQX0AqB__TnzrmPtDbk9l30LJt78ih0wvfo-CW" alt="The Batman">
+                <img src="https://m.media-amazon.com/images/M/MV5BMmFiZGZjMmEtMTA0Ni00MzA2LTljMTYtZGI2MGJmZWYzZTQ2XkEyXkFqcGc@._V1_.jpg" alt="Spider-Man: No Way Home">
+                <img src="https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg" alt="La La Land">
+
+                <!-- Navigation buttons -->
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+
+            <!-- Dots -->
+            <div class="dots">
+                <span onclick="currentSlide(1)" class="active"></span>
+                <span onclick="currentSlide(2)"></span>
+                <span onclick="currentSlide(3)"></span>
+            </div>
+        </section>
+
+        <!-- Now Showing Section (Unchanged) -->
+        <section id="now-showing">
+            <h2>Now Showing</h2>
+            <div class="movie">
+                <h3>The Batman</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUOpwFVoR5xgrQX0AqB__TnzrmPtDbk9l30LJt78ih0wvfo-CW" alt="The Batman" width="200">
+                <p>Rating: PG-13</p>
+                <p>Genre: Action, Crime</p>
+                <button onclick="bookTicket('The Batman')">Book Ticket</button>
+            </div>
+            <div class="movie">
+                <h3>Spider-Man: No Way Home</h3>
+                <img src="https://m.media-amazon.com/images/M/MV5BMmFiZGZjMmEtMTA0Ni00MzA2LTljMTYtZGI2MGJmZWYzZTQ2XkEyXkFqcGc@._V1_.jpg" alt="Spider-Man: No Way Home" width="200">
+                <p>Rating: PG-13</p>
+                <p>Genre: Action, Sci-fi</p>
+                <button onclick="bookTicket('Spider-Man: No Way Home')">Book Ticket</button>
+            </div>
+            <div class="movie">
+                <h3>La La Land</h3>
+                <img src="https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg" alt="La La Land" width="200">
+                <p>Rating: PG-13</p>
+                <p>Genre: Horror, Romance</p>
+                <button onclick="bookTicket('La La Land')">Book Ticket</button>
+            </div>
+        </section>
     </main>
+
     <footer>
         <p>&copy; 2023 MTRS 1123534 & 1111549. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slideshow-container img');
+            const dots = document.querySelectorAll('.dots span');
+            if (index >= slides.length) currentIndex = 0;
+            if (index < 0) currentIndex = slides.length - 1;
+
+            // Hide all slides and deactivate all dots
+            slides.forEach(slide => (slide.style.display = 'none'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Show current slide and activate corresponding dot
+            slides[currentIndex].style.display = 'block';
+            dots[currentIndex].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            showSlide(currentIndex);
+        }
+
+        function currentSlide(index) {
+            currentIndex = index - 1;
+            showSlide(currentIndex);
+        }
+
+        // Auto-play functionality
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000); // Change slide every 5 seconds
+
+        // Initialize the slideshow
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(currentIndex);
+        });
+    </script>
 </body>
 </html>
