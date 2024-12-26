@@ -11,10 +11,11 @@
     <header>
         <h1>Payment</h1>
     </header>
+    
     <main>
         <section>
             <h2 id="payment-summary">Payment Details</h2>
-            <div id="summary">
+            <div id="summary" class="movie">
                 <p id="movie-name"></p>
                 <p id="time"></p>
                 <p id="category"></p>
@@ -24,7 +25,7 @@
                 <p id="total-cost"></p>
             </div>
 
-            <form id="payment-form">
+            <form id="payment-form" class="movie">
                 <h3>Enter Payment Details</h3>
                 <label for="card-number">Card Number:</label>
                 <input type="text" id="card-number" name="card-number" placeholder="XXXX-XXXX-XXXX-XXXX" required>
@@ -39,9 +40,13 @@
             </form>
 
             <!-- Go Back Section -->
-            <button id="back-button">Go Back to Booking</button>
+            <button id="back-button" class="movie">Go Back to Booking</button>
         </section>
     </main>
+
+    <footer>
+        <p>&copy; 2023 Movie Ticket Booking. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
