@@ -1,6 +1,6 @@
 // check-login.js
 document.addEventListener("DOMContentLoaded", function() {
-    // Get cookies
+  
     const cookies = document.cookie.split(';').reduce((acc, cookie) => {
         const [name, value] = cookie.trim().split('=');
         acc[name] = value;
