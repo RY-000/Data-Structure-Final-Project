@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Payment</h1>
+    </header>
+    <main>
+        <section>
+            <h2 id="payment-summary">Payment Details</h2>
+            <div id="summary">
+                <p id="movie-name"></p>
+                <p id="time"></p>
+                <p id="category"></p>
+                <p id="language"></p>
+                <p id="seats"></p>
+                <p id="num-tickets"></p>
+                <p id="total-cost"></p>
+            </div>
+
+            <form id="payment-form">
+                <h3>Enter Payment Details</h3>
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="month" id="expiry-date" name="expiry-date" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="password" id="cvv" name="cvv" maxlength="3" required>
+
+                <button type="submit">Pay Now</button>
+            </form>
+            <button id="back-button">Go Back</button>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve query parameters
+            const params = new URLSearchParams(window.location.search);
+            const movieName = params.get("movie");
+            const time = params.get("time");
+            const category = params.get("category");
+            const language = params.get("language");
+            const seats = params.getAll("seat");
+            const numTickets = params.get("numTickets");
+
+            // Display booking summary
+            const ticketPrice = 10; // Ticket price per person
+            const totalCost = numTickets * ticketPrice;
+
+            document.getElementById("movie-name").textContent = `Movie: ${movieName}`;
+            document.getElementById("time").textContent = `Time: ${time}`;
+            document.getElementById("category").textContent = `Category: ${category}`;
+            document.getElementById("language").textContent = `Language: ${language}`;
+            document.getElementById("seats").textContent = `Seats: ${seats.join(", ")}`;
+            document.getElementById("num-tickets").textContent = `Number of Tickets: ${numTickets}`;
+            document.getElementById("total-cost").textContent = `Total Cost: $${totalCost}`;
+
+            // Handle payment submission
+            document.getElementById("payment-form").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                // Simulate payment processing
+                alert("Payment Successful! Your e-ticket has been sent to your email.");
+
+                // Redirect to a confirmation page or home page
+                window.location.href = "confirmation.html";
+            });
+
+            // Handle "Go Back" button
+            document.getElementById("back-button").addEventListener("click", function () {
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html>
