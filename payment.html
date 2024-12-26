@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -39,7 +39,6 @@
                 <button type="submit">Pay Now</button>
             </form>
 
-            <!-- Go Back Section -->
             <button id="back-button" class="movie">Go Back to Booking</button>
         </section>
     </main>
@@ -50,7 +49,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Retrieve query parameters
             const params = new URLSearchParams(window.location.search);
             const movieName = params.get("movie");
             const time = params.get("time");
@@ -59,8 +57,7 @@
             const seats = params.getAll("seat");
             const numTickets = params.get("numTickets");
 
-            // Display booking summary
-            const ticketPrice = 100; // Ticket price per person
+            const ticketPrice = 100;
             const totalCost = numTickets * ticketPrice;
 
             document.getElementById("movie-name").textContent = `Movie: ${movieName}`;
@@ -71,18 +68,14 @@
             document.getElementById("num-tickets").textContent = `Number of Tickets: ${numTickets}`;
             document.getElementById("total-cost").textContent = `Total Cost: $${totalCost}`;
 
-            // Handle payment submission
             document.getElementById("payment-form").addEventListener("submit", function (e) {
                 e.preventDefault();
 
-                // Simulate payment processing
                 alert("Payment Successful! Your e-ticket has been sent to your email.");
 
-                // Redirect to the home page
                 window.location.href = "index.html";
             });
 
-            // Handle "Go Back" button
             document.getElementById("back-button").addEventListener("click", function () {
                 window.history.back();
             });
