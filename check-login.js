@@ -22,23 +22,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Login function
 function login() {
-    // For demo purposes, ask the user for a username
+  
     const username = prompt("Enter your username:");
 
     if (username) {
-        // Set a cookie with the user's name (username)
+        
         document.cookie = `username=${username}; path=/`;
 
-        // Reload the page to reflect the login
+    
         window.location.reload();
     }
 }
 
 // Logout function
 function logout() {
-    // Delete the username cookie by setting an expiration date in the past
+   
     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
 
-    // Reload the page to reflect the logout
+ 
     window.location.reload();
 }
